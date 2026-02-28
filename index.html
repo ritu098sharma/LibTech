@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Library Management System</title>
+
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+<div id="login-page" class="container box">
+    <h2 class="text-center mb-4">Library Management System</h2>
+
+    <input type="text" id="username" class="form-control mb-3" placeholder="User ID">
+    <input type="password" id="password" class="form-control mb-3" placeholder="Password">
+
+    <button class="btn btn-primary w-100 mb-2" onclick="login()">Login</button>
+
+    <p class="text-center">
+        Don't have an account?
+        <a href="#" onclick="showSignup()">Sign up here</a>
+    </p>
+</div>
+
+
+<div id="signup-page" class="container box hidden">
+    <h2 class="text-center mb-4">Create Account</h2>
+
+    <input type="text" id="new-username" class="form-control mb-3" placeholder="Create User ID">
+    <input type="password" id="new-password" class="form-control mb-3" placeholder="Create Password">
+
+    <select id="role" class="form-control mb-3">
+        <option value="">Select Role</option>
+        <option value="admin">Admin</option>
+        <option value="user">User</option>
+    </select>
+    <div class="d-flex gap-2">
+        <button class="btn btn-secondary w-50" onclick="showLogin()">Cancel</button>
+        <button class="btn btn-success w-50" onclick="signup()">Sign Up</button>
+    </div>
+</div>
+
+
+<div id="home-page" class="container-fluid hidden">
+    <nav class="navbar navbar-dark bg-dark px-4">
+        <span class="navbar-brand">Library Dashboard</span>
+        <button class="btn btn-danger btn-sm" onclick="logout()">Logout</button>
+    </nav>
+
+    <div class="row">
+       
+        <div class="col-md-3 sidebar">
+            <ul class="list-group">
+                <li class="list-group-item" onclick="showPage('availability-page')">Book Availability</li>
+                <li class="list-group-item" onclick="showPage('issue-page')"> Issue Book</li>
+                <li class="list-group-item" onclick="showPage('return-page')"> Return Book</li>
+                <li class="list-group-item" onclick="showPage('fine-page')"> Pay Fine</li>
+            </ul>
+        </div>
+
+        
+        <div class="col-md-9 content-area">
+
+           
+            <div id="availability-page" class="card p-4 hidden">
+                <h4>Check Book Availability</h4>
+
+                <select id="avail-book-name" class="form-control mb-3">
+                    <option value="">Select Book</option>
+                    <option>Science Vol 1</option>
+                    <option>Economics Basics</option>
+                </select>
+
+                <select id="avail-author-name" class="form-control mb-3">
+                    <option value="">Select Author</option>
+                    <option>Dr. Smith</option>
+                    <option>Prof. Knight</option>
+                </select>
+
+                <button class="btn btn-primary" onclick="validateAndSearch()">Search</button>
+            </div>
+
+            
+            <div id="issue-page" class="card p-4">
+                <h4>Issue Book</h4>
+
+                <input class="form-control mb-3" placeholder="Book Name">
+                <input class="form-control mb-3" placeholder="Author Name">
+                <input type="date" class="form-control mb-3">
+                <input type="date" class="form-control mb-3">
+
+                <button class="btn btn-success" onclick="alert('Book Issued Successfully')">
+                    Confirm
+                </button>
+            </div>
+
+           
+            <div id="return-page" class="card p-4 hidden">
+                <h4>Return Book</h4>
+
+                <input id="return-book-name" class="form-control mb-3" placeholder="Book Name">
+                <input type="date" id="return-actual-date" class="form-control mb-3">
+
+                <button class="btn btn-warning" onclick="processReturn()">Return</button>
+            </div>
+
+           
+            <div id="fine-page" class="card p-4 hidden">
+                <h4>Pay Fine</h4>
+
+                <input id="fine-book-name" class="form-control mb-3" readonly>
+                <input id="fine-amount" class="form-control mb-3" readonly>
+
+                <div class="form-check mb-3">
+                    <input type="checkbox" id="fine-paid-check" class="form-check-input">
+                    <label class="form-check-label">Fine Paid</label>
+                </div>
+
+                <button class="btn btn-success" onclick="completeFinePayment()">Confirm</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
